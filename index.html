@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Documentation Style</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --docs-bg: #111111;
+            --docs-sidebar: #171717;
+            --docs-text: #e1e1e1;
+            --docs-muted: #999999;
+            --docs-accent: #007acc;
+            --docs-border: #2b2b2b;
+            --docs-card: #1e1e1e;
+            --docs-code-bg: #1e1e1e;
+        }
+
+        body {
+            background-color: var(--docs-bg);
+            color: var(--docs-text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Navbar supérieure */
+        .navbar-docs {
+            background-color: var(--docs-bg);
+            border-bottom: 1px solid var(--docs-border);
+            padding: 0.75rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Structure Layout */
+        .docs-wrapper {
+            display: flex;
+            min-height: calc(100vh - 57px);
+        }
+
+        /* Sidebar gauche */
+        .docs-sidebar {
+            width: 280px;
+            background-color: var(--docs-sidebar);
+            border-right: 1px solid var(--docs-border);
+            padding: 2rem 1rem;
+            position: sticky;
+            top: 57px;
+            height: calc(100vh - 57px);
+            overflow-y: auto;
+        }
+
+        .sidebar-nav-group {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-nav-header {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--docs-muted);
+            margin-bottom: 0.75rem;
+            padding-left: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0.75rem;
+            color: var(--docs-text);
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar-nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--docs-accent);
+        }
+
+        .sidebar-nav-link.active {
+            background-color: rgba(0, 122, 204, 0.1);
+            color: var(--docs-accent);
+            font-weight: 600;
+        }
+
+        /* Contenu principal */
+        .docs-content {
+            flex: 1;
+            padding: 3rem 4rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; color: white; }
+        h2 { font-size: 1.75rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 1.25rem; color: white; border-bottom: 1px solid var(--docs-border); padding-bottom: 0.5rem; }
+        
+        .lead { color: var(--docs-muted); font-size: 1.2rem; }
+
+        /* Photo de Profil */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 3px solid var(--docs-accent);
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Cartes de projets */
+        .project-card {
+            background-color: var(--docs-card);
+            border: 1px solid var(--docs-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .project-card:hover {
+            border-color: var(--docs-accent);
+            transform: translateY(-3px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            background-color: #333;
+        }
+
+        .badge-tech {
+            background-color: rgba(0, 122, 204, 0.15);
+            color: var(--docs-accent);
+            font-size: 0.75rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        /* Formulaire */
+        .form-control {
+            background-color: var(--docs-card);
+            border: 1px solid var(--docs-border);
+            color: white;
+        }
+        .form-control:focus {
+            background-color: var(--docs-card);
+            border-color: var(--docs-accent);
+            color: white;
+            box-shadow: none;
+        }
+
+        /* Footer interne */
+        .docs-footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--docs-border);
+            display: flex;
+            justify-content: space-between;
+            color: var(--docs-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 992px) {
+            .docs-sidebar { display: none; }
+            .docs-content { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-docs">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i data-lucide="terminal" style="color: var(--docs-accent)"></i>
+                <span>VISUAL STUDIO PORTFOLIO</span>
+            </a>
+            <div class="d-flex align-items-center">
+                <a href="https://github.com/ton-pseudo" target="_blank" class="text-white text-decoration-none me-3">
+                    <i data-lucide="github" size="20"></i>
+                </a>
+                <span class="badge bg-success small d-none d-md-inline">v1.0.4</span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="docs-sidebar">
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-header">Introduction</div>
+                <a href="#" id="link-moi" class="sidebar-nav-link active" onclick="navigate('moi')">À propos de moi</a>
+                <a href="#" id="link-parcourt" class="sidebar-nav-link" onclick="navigate('parcourt')">Mon Parcours</a>
+                <a href="#" id="link-skills" class="sidebar-nav-link" onclick="navigate('skills')">Compétences</a>
+            </div>
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-header">Réalisations</div>
+                <a href="#" id="link-projets" class="sidebar-nav-link" onclick="navigate('projets')">Projets Web</a>
+                <a href="#" id="link-references" class="sidebar-nav-link" onclick="navigate('references')">Témoignages</a>
+            </div>
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-header">Ressources</div>
+                <a href="#" id="link-cv" class="sidebar-nav-link" onclick="navigate('cv')">Curriculum Vitae</a>
+                <a href="#" id="link-contact" class="sidebar-nav-link" onclick="navigate('contact')">Contactez-moi</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="docs-content">
+            
+            <!-- Section MOI -->
+            <div id="section-moi" class="content-section animated fadeIn">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" alt="Ma Photo" class="profile-img">
+                <h1>Développeur Web Fullstack</h1>
+                <p class="lead">Bienvenue sur mon portfolio. Je conçois des solutions digitales performantes avec une approche centrée sur l'utilisateur.</p>
+                <p>Je m'appelle <strong>Ton Nom</strong>. Passionné par l'écosystème web, je transforme des idées complexes en interfaces fluides et maintenables. Mon approche est guidée par la propreté du code et l'optimisation des performances.</p>
+                
+                <h2>Expertise Technique</h2>
+                <div class="row mt-3">
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 border border-secondary rounded h-100">
+                            <i data-lucide="layout" class="text-primary mb-2"></i>
+                            <h6>Frontend</h6>
+                            <p class="small text-muted">HTML5, CSS3, JavaScript, React, Bootstrap</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 border border-secondary rounded h-100">
+                            <i data-lucide="database" class="text-success mb-2"></i>
+                            <h6>Backend</h6>
+                            <p class="small text-muted">Node.js, Express, MongoDB, SQL</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="p-3 border border-secondary rounded h-100">
+                            <i data-lucide="git-merge" class="text-warning mb-2"></i>
+                            <h6>DevOps</h6>
+                            <p class="small text-muted">Git, CI/CD, Docker, Vercel</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section SKILLS -->
+            <div id="section-skills" class="content-section d-none">
+                <h1>Compétences</h1>
+                <p class="lead">Ma boîte à outils technologique.</p>
+                
+                <h2 class="mt-4">Langages & Frameworks</h2>
+                <div class="mb-4">
+                    <p class="mb-1">JavaScript / TypeScript</p>
+                    <div class="progress bg-dark" style="height: 8px;">
+                        <div class="progress-bar bg-primary" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <p class="mb-1">React.js</p>
+                    <div class="progress bg-dark" style="height: 8px;">
+                        <div class="progress-bar bg-info" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <p class="mb-1">Node.js & Express</p>
+                    <div class="progress bg-dark" style="height: 8px;">
+                        <div class="progress-bar bg-success" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <p class="mb-1">HTML5 & CSS3 (Tailwind/Bootstrap)</p>
+                    <div class="progress bg-dark" style="height: 8px;">
+                        <div class="progress-bar bg-warning" style="width: 95%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section PARCOURT -->
+            <div id="section-parcourt" class="content-section d-none">
+                <h1>Mon Parcours</h1>
+                <p class="lead">De la curiosité à l'expertise.</p>
+                
+                <div class="mt-5">
+                    <div class="mb-5 position-relative ps-4 border-start border-primary">
+                        <span class="badge bg-primary position-absolute" style="left: -12px; top: 0; width: 24px; height: 24px; border-radius: 50%">&nbsp;</span>
+                        <h4 class="text-white">2024 - Présent : Lead Developer Freelance</h4>
+                        <p class="text-muted small">Accompagnement de startups dans la création de leurs MVPs.</p>
+                    </div>
+                    <div class="mb-5 position-relative ps-4 border-start border-secondary">
+                        <span class="badge bg-secondary position-absolute" style="left: -12px; top: 0; width: 24px; height: 24px; border-radius: 50%">&nbsp;</span>
+                        <h4 class="text-white">2022 - 2024 : Développeur Web Junior</h4>
+                        <p class="text-muted small">Travail en équipe agile sur des applications bancaires sécurisées.</p>
+                    </div>
+                    <div class="mb-5 position-relative ps-4 border-start border-secondary">
+                        <span class="badge bg-secondary position-absolute" style="left: -12px; top: 0; width: 24px; height: 24px; border-radius: 50%">&nbsp;</span>
+                        <h4 class="text-white">2021 : Diplôme en Génie Logiciel</h4>
+                        <p class="text-muted small">Spécialisation dans les architectures distribuées.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section PROJETS -->
+            <div id="section-projets" class="content-section d-none">
+                <h1>Projets Web</h1>
+                <p class="lead">Réalisations récentes et projets open-source.</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1551288049-bbb6518145ad?w=800" alt="E-commerce Project" class="project-img">
+                            <h3>Dashboard E-commerce "Nexus"</h3>
+                            <p>Analyse de ventes en temps réel avec intégration de Stripe et graphiques interactifs (Recharts).</p>
+                            <div class="mb-3">
+                                <span class="badge-tech">React</span>
+                                <span class="badge-tech">Node.js</span>
+                                <span class="badge-tech">MongoDB</span>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary btn-sm">Dépôt GitHub</a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="project-card">
+                            <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=800" alt="Mobile App Design" class="project-img">
+                            <h3>App de Collaboration d'Équipe</h3>
+                            <p>Outil de gestion de tâches inspiré de Notion avec gestion de fichiers en drag & drop.</p>
+                            <div class="mb-3">
+                                <span class="badge-tech">Next.js</span>
+                                <span class="badge-tech">Tailwind</span>
+                                <span class="badge-tech">Firebase</span>
+                            </div>
+                            <a href="#" class="btn btn-outline-primary btn-sm">Démonstration</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section REFERENCES -->
+            <div id="section-references" class="content-section d-none">
+                <h1>Témoignages</h1>
+                <p class="lead">Ce que disent mes collaborateurs.</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-4">
+                        <div class="p-4 bg-dark rounded border border-secondary">
+                            <p class="fst-italic">"Un développeur rigoureux et créatif. Il a su livrer notre plateforme en respectant des délais très serrés."</p>
+                            <footer class="blockquote-footer mt-2">Jean Dupont, <cite title="Source Title">CTO de StartupX</cite></footer>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="p-4 bg-dark rounded border border-secondary">
+                            <p class="fst-italic">"Son code est propre et sa communication excellente. Un plaisir de travailler sur ce projet."</p>
+                            <footer class="blockquote-footer mt-2">Sarah L., <cite title="Source Title">Chef de Projet</cite></footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section CV -->
+            <div id="section-cv" class="content-section d-none">
+                <h1>Curriculum Vitae</h1>
+                <p class="lead">Format PDF disponible pour consultation immédiate.</p>
+                
+                <div class="p-5 border border-dashed rounded text-center mt-5" style="border: 2px dashed var(--docs-border) !important">
+                    <i data-lucide="file-text" size="48" class="text-muted mb-3"></i>
+                    <h4>Mon_CV_Fullstack_2024.pdf</h4>
+                    <p class="text-muted mb-4">Dernière modification : il y a 2 jours</p>
+                    <button class="btn btn-primary px-4 py-2">
+                        <i data-lucide="download" size="16" class="me-2"></i> Télécharger
+                    </button>
+                </div>
+            </div>
+
+            <!-- Section CONTACT -->
+            <div id="section-contact" class="content-section d-none">
+                <h1>Contactez-moi</h1>
+                <p class="lead">Une idée ? Un projet ? Parlons-en.</p>
+                
+                <div class="row mt-4">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Nom complet</label>
+                            <input type="text" class="form-control" placeholder="John Doe">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Email</label>
+                            <input type="email" class="form-control" placeholder="john@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-muted">Message</label>
+                            <textarea class="form-control" rows="5"></textarea>
+                        </div>
+                        <button class="btn btn-primary px-4">Envoyer le message</button>
+                    </div>
+                    <div class="col-md-4 mt-4 mt-md-0">
+                        <h5>Réseaux</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><a href="#" class="text-info text-decoration-none"><i data-lucide="linkedin" size="16" class="me-2"></i> LinkedIn</a></li>
+                            <li class="mb-2"><a href="#" class="text-info text-decoration-none"><i data-lucide="twitter" size="16" class="me-2"></i> Twitter</a></li>
+                            <li class="mb-2"><a href="mailto:contact@tondomaine.com" class="text-info text-decoration-none"><i data-lucide="mail" size="16" class="me-2"></i> Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="docs-footer">
+                <div>© 2024 - Ton Nom. Tous droits réservés.</div>
+                <div>Code : UTF-8 | Statut : Connecté</div>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Initialisation des icônes Lucide
+        lucide.createIcons();
+
+        // Gestion de la navigation
+        function navigate(sectionId) {
+            // Cacher toutes les sections avec animation simple
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('d-none');
+            });
+
+            // Afficher la section cible
+            const targetSection = document.getElementById('section-' + sectionId);
+            targetSection.classList.remove('d-none');
+
+            // Gérer l'état actif dans la sidebar
+            document.querySelectorAll('.sidebar-nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.getElementById('link-' + sectionId).classList.add('active');
+
+            // Scroll vers le haut de la zone de contenu
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
+
